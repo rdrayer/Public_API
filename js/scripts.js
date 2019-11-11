@@ -3,9 +3,9 @@ const gallery = document.querySelector('.gallery');
 const card = document.getElementsByClassName('card');
 
 const modalContainer = document.createElement('div');
-modalContainer.className = 'modal-container';
+//modalContainer.className = 'modal-container';
 gallery.insertAdjacentElement('afterend', modalContainer);
-$('.modal-container').hide();
+//$('.modal-container').hide();
 
 
 // ------------------------------------------
@@ -23,6 +23,7 @@ fetchData(url)
         generateModalCard(employee);
         //console.log(data.results)
     }))
+    .then(clickCard)
 
 
 // ------------------------------------------
@@ -47,20 +48,22 @@ function generateEmployeeData(data) {
 
 function generateModalCard(data) {
     const html = `
-        <div class="modal">
+    <div id="noClass">
+        <div id="modalId">
             <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                <div class="modal-info-container">
-                    <img class="modal-img" src="${data.picture.medium}" alt="profile picture">
-                    <h3 id="name" class="modal-name cap">${data.name.first} ${data.name.last}</h3>
-                    <p class="modal-text">${data.email}</p>
-                    <p class="modal-text cap">${data.location.city}</p>
-                    <hr>
-                    <p class="modal-text">${data.phone}</p>
-                    <p class="modal-text">${data.location.street.number} ${data.location.street.name} ${data.location.state}, ${data.location.postcode}</p>
-                    <p class="modal-text">Birthday: ${data.dob.date}</p>
-                </div>
+            <div class="modal-info-container">
+                <img class="modal-img" src="${data.picture.medium}" alt="profile picture">
+                <h3 id="name" class="modal-name cap">${data.name.first} ${data.name.last}</h3>
+                <p class="modal-text">${data.email}</p>
+                <p class="modal-text cap">${data.location.city}</p>
+                <hr>
+                <p class="modal-text">${data.phone}</p>
+                <p class="modal-text">${data.location.street.number} ${data.location.street.name} ${data.location.state}, ${data.location.postcode}</p>
+                <p class="modal-text">Birthday: ${data.dob.date}</p>
+            </div>
         </div>
-        `;
+    </div>
+    `;
     modalContainer.innerHTML += html;  
 } 
 
@@ -68,6 +71,16 @@ function generateModalCard(data) {
 //  EVENT LISTENERS
 // ------------------------------------------
 
+function clickCard() {
+    for (let i = 0; i < card.length; i++) {
+        card[i].addEventListener('click', function(event) {
+            const noClass = document.getElementById('noClass');
+            noClass.className = 'modal-container';
+            const modalId = document.getElementById('modalId');
+            modalId.className = 'modal';
+        });
+    }
+}
 
 // ------------------------------------------
 //  POST DATA
