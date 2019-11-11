@@ -3,9 +3,9 @@ const gallery = document.querySelector('.gallery');
 const card = document.getElementsByClassName('card');
 
 const modalContainer = document.createElement('div');
-//modalContainer.className = 'modal-container';
+modalContainer.className = 'modal-container';
 gallery.insertAdjacentElement('afterend', modalContainer);
-//$('.modal-container').hide();
+$('.modal-container').hide();
 
 
 // ------------------------------------------
@@ -47,9 +47,8 @@ function generateEmployeeData(data) {
 }
 
 function generateModalCard(data) {
-    const html = `
-    <div id="noClass">
-        <div id="modalId">
+    const html = `  
+        <div class="modal">
             <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
             <div class="modal-info-container">
                 <img class="modal-img" src="${data.picture.medium}" alt="profile picture">
@@ -62,7 +61,7 @@ function generateModalCard(data) {
                 <p class="modal-text">Birthday: ${data.dob.date}</p>
             </div>
         </div>
-    </div>
+    
     `;
     modalContainer.innerHTML += html;  
 } 
@@ -73,16 +72,11 @@ function generateModalCard(data) {
 
 function clickCard() {
     for (let i = 0; i < card.length; i++) {
-        card[i].addEventListener('click', function(event) {
-            const noClass = document.getElementById('noClass');
-            noClass.className = 'modal-container';
-            const modalId = document.getElementById('modalId');
-            modalId.className = 'modal';
-        });
-    }
+        console.log(card[i]);
+        };
+    
 }
 
 // ------------------------------------------
 //  POST DATA
 // ------------------------------------------
-
