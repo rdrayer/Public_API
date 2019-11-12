@@ -12,18 +12,13 @@ $('.modal-container').hide();
 //  FETCH FUNCTIONS
 // ------------------------------------------
 
-function fetchData(url) {
-    return fetch(url)
-        .then(response => response.json())
-}
-
-fetchData(url)
-    .then(data => data.results.map(employee => {
-        generateEmployeeData(employee);
-        generateModalCard(employee);
+fetch(url)
+    .then(response => response.json())
+    .then(data => data.results.map(e => {
+        generateEmployeeData(e);
+        //generateModalCard(e);
         //console.log(data.results)
     }))
-    .then(clickCard)
 
 
 // ------------------------------------------
@@ -61,8 +56,7 @@ function generateModalCard(data) {
                 <p class="modal-text">Birthday: ${data.dob.date}</p>
             </div>
         </div>
-    
-    `;
+        `;
     modalContainer.innerHTML += html;  
 } 
 
@@ -70,13 +64,38 @@ function generateModalCard(data) {
 //  EVENT LISTENERS
 // ------------------------------------------
 
-function clickCard() {
-    for (let i = 0; i < card.length; i++) {
-        console.log(card[i]);
-        };
-    
-}
+
+   
+
 
 // ------------------------------------------
 //  POST DATA
 // ------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+function generateLink(){
+    for (let index = 0; index < card.length; index++) {
+        card[index].addEventListener('click', function(){
+            generateModalCard(index);
+            $('.modal-container').show();
+        })
+    }
+}
+*/
