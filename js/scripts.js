@@ -87,15 +87,3 @@ function generateModalCard(data) {
 
 
 
-
-
-/*
-function generateLink(){
-    for (let index = 0; index < card.length; index++) {
-        card[index].addEventListener('click', function(){
-            generateModalCard(index);
-            $('.modal-container').show();
-        })
-    }
-}
-*/
