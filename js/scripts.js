@@ -14,12 +14,10 @@ function fetchData(url) {
 fetchData(url)
     //.then(data => console.log(data.results))
     .then(data => generateEmployeeData(data.results))
-    
 
 // ------------------------------------------
 //  HELPER FUNCTIONS
 // ------------------------------------------
-
 function generateEmployeeData(data) {
     data.map(e=> {
         const card = document.createElement('div');
@@ -85,16 +83,3 @@ function generateModalCard(e) {
         }
     });
 } 
-
-
-
-
-
-
-
-
-
-
-
-
-
