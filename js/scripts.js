@@ -1,7 +1,6 @@
 //main URL + global variables
 const url = 'https://randomuser.me/api/?results=12&nat=us';
 const gallery = document.querySelector('.gallery');
-const card = document.querySelector('.card');
 const body = document.querySelector('body');
 
 // ------------------------------------------
@@ -13,7 +12,9 @@ function fetchData(url) {
 }
 
 fetchData(url)
+    //.then(data => console.log(data.results))
     .then(data => generateEmployeeData(data.results))
+    
 
 // ------------------------------------------
 //  HELPER FUNCTIONS
@@ -26,7 +27,7 @@ function generateEmployeeData(data) {
 
         const html = `
             <div class="card-img-container">
-                <img class="card-img" src="${e.picture.medium}" alt="profile picture">
+                <img class="card-img" src="${e.picture.large}" alt="profile picture">
             </div>
             <div class="card-info-container">
                 <h3 id="name" class="card-name cap">${e.name.first} ${e.name.last}</h3>
@@ -59,14 +60,14 @@ function generateModalCard(e) {
         <div class="modal">
             <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
             <div class="modal-info-container">
-                <img class="modal-img" src="${e.picture.medium}" alt="profile picture">
+                <img class="modal-img" src="${e.picture.large}" alt="profile picture">
                 <h3 id="name" class="modal-name cap">${e.name.first} ${e.name.last}</h3>
-                <p class="modal-text">Email: ${e.email}</p>
+                <p class="modal-text"><strong>Email:</strong> ${e.email}</p>
                 <hr>
-                <p class="modal-text">Phone: ${e.phone}</p>
-                <p class="modal-text">Address: ${e.location.street.number} ${e.location.street.name}</p>
-                <p class="modal-text">${e.location.city}, ${e.location.state}, ${e.location.postcode}</p>
-                <p class="modal-text">Birthday: ${dob} </p>
+                <p class="modal-text"><strong>Phone:</strong> ${e.phone}</p>
+                <p class="modal-text"><strong>Address:</strong> ${e.location.street.number} ${e.location.street.name}</p>
+                <p class="modal-text">${e.location.city}, ${e.location.state} ${e.location.postcode}</p>
+                <p class="modal-text"><strong>DOB:</strong> ${dob} </p>
             </div>
         </div>
         `;
@@ -79,7 +80,7 @@ function generateModalCard(e) {
     });
   
     window.addEventListener('click', (e) => {
-        if (e.target === modalContainer){
+        if (e.target.modalContainer) {
         $('.modal-container').hide();
         }
     });
